@@ -35,7 +35,7 @@ connectDB()
 
 
 
-//this is the forst approach
+//this is the first approach
 
 /*
 import express from "express";
