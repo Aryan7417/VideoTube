@@ -1,15 +1,15 @@
 //require ('dotenv').config({path:'./env'})
 
 import dotenv from "dotenv"
-
 import connectDB from "./db/index.js";
-
-dotenv.config({
+import app from "./app.js"
+ dotenv.config({
     path:'./env'
 })
 
 
-connectDB()
+
+ connectDB()
 
 .then(()=>{
     app.listen(process.env.PORT || 8000 ,()=>{
@@ -35,10 +35,11 @@ connectDB()
 
 
 
-//this is the first approach
+// //this is the first approach
 
-/*
+ /*
 import express from "express";
+import {DB_name} from "./constants.js" 
 
 const app=express()
 
@@ -68,3 +69,5 @@ const app=express()
 
 connectDB()
 */
+
+

@@ -26,12 +26,12 @@ const userSchema = new Schema({
         trim:true,
 
     },
-    avatr:{
+    avatar:{
         type:String,
         required:true,
         
     },
-    coberImage:{
+    coverImage:{
         type:String,
     
     },
@@ -57,7 +57,7 @@ const userSchema = new Schema({
 })
 
 userSchema.pre("save",async function(next) {
-    if(this.isModfied("password")) return next();
+    if(!this.isModfied("password")) return next();
 
 
     this.password = bcrypt.hash(this.password,10)
@@ -71,7 +71,7 @@ userSchema.method.isPasswordCorrect =async function(password){
 
 
 userSchema.methods.generateAccessToken = function(){
-    jwt.sign(
+   return jwt.sign(
         {
             _id:this._id,
             email:this.email,
@@ -85,12 +85,10 @@ userSchema.methods.generateAccessToken = function(){
     )
 }
 userSchema.methods.generateRefreshToken = function(){
-    jwt.sign(
+    return jwt.sign(
         {
             _id:this._id,
-            email:this.email,
-            username:this.username,
-            fullname:this.fullname
+            
         },
         process.env.REFRESH_TOKEN-SECRET,
         {

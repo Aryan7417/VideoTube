@@ -10,7 +10,7 @@ const connectDB=async ()=>{
         } 
         
         catch (error){
-        console.log("MONGOB connection failsed :",error);
+        console.log("MONGOB connection Error!!!!!!!:",error);
         process.exit(1)
     }
 }
