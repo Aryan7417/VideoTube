@@ -10,27 +10,33 @@ cloudinary.config({
 
 const uploadCloudinary =async (localFilePath)=>{
     try {
-        if (!localFilePath) return Null
+        if (!localFilePath) return null
         //Upload the file on cloadnaery
         const responce = await cloudinary.uploader.upload(localFilePath,{
             resource_type:"auto"
         })
 
         //file has been upodaed
-        console.log("file is uploaded on cloaudneary",responce.url);
+        // console.log("file is uploaded on cloaudneary",responce.url);
+        if(localFilePath){
+        fs.unlinkSync(localFilePath)
+        }
         return responce;
               
     } catch (error) {
-        fs.unlinkSync(localFilePath) //remove the locally seaved file as the upload operatin got faild 
+        
+        if(localFilePath){
+            fs.unlinkSync(localFilePath) //remove the locally seaved file as the upload operatin got faild 
+        }
         return  null;    
         
     }
 }
 
-cloudinary.v2.uploader.upload("https://res.cloudinary.com/demo/image/upload/c_thumb,g_face,h_150,w_150/r_20/e_sepia/l_cloudinary_icon/e_brightness:90/o_60/c_scale,w_50/fl_layer_apply,g_south_east,x_5,y_5/a_10/q_auto/front_face.png",
-     {public_id: "olympic flag"}, (error, result)=>{
-  console.log(result);
-});
+// cloudinary.v2.uploader.upload("public/test.png.jpg",
+//      {public_id: "olympic flag"}, (error, result)=>{
+//   console.log(result);
+// });
 
 
 
