@@ -134,7 +134,7 @@ const loginUser =asyncHandler(async(req , res)=>{
     //rteq body->data
     const {email,username,password} =req.bady
 
-    if(!username || !email){
+    if(!username && !email){
         throw new ApiError(400, "username or email is required")
     }
 
