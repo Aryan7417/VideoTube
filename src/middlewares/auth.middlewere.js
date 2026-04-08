@@ -11,7 +11,7 @@ try {
         throw new ApiError(401,"unauthorized Request")
        }
     
-      const decodedTokne = jwt.verify (token , proccess.env.ACCESS_TOKEN_SECRET)
+      const decodedTokne = jwt.verify (token , process.env.ACCESS_TOKEN_SECRET)
     
     
       const user = await User.findById(decodedTokne?._id).select("-password -refreshToken" )
