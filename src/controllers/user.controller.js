@@ -217,7 +217,7 @@ const refreshAccessToken = asyncHandler(async(req,res) =>{
 
     const incomingRefreshtoken = req.cookie.refreshToken || req.body.refreshToken
 
-    if(incomingRefreshtoken){
+    if(!incomingRefreshtoken){
         throw new ApiError(401,"unauthoruized request")
     }
  
@@ -264,6 +264,12 @@ const refreshAccessToken = asyncHandler(async(req,res) =>{
    }
 
 
+})
+
+const changeCurrentPassword = asyncHandler(async(req,res)=>{
+    const { oldPassword, newPassowrd } = req.body
+
+    const user= await User.findById(req.user?.id)
 })
 
 export {
